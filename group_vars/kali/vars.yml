@@ -1,0 +1,130 @@
+---
+# Burp Suite settings
+burpsuite_cacert_path: "{{ burpsuite_extras_dir }}/PortSwigger_CA.der"
+burpsuite_extras_dir: "/home/{{ kali_user }}/BurpSuiteExtras"
+burpsuite_user: "{{ kali_user }}"
+
+# Git repositories to clone to /opt
+# Various projects that are either not in Kali or are updated more frequently than Kali repos
+git_repos:
+  - name: privilege-escalation-awesome-scripts-suite
+    repo: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
+  - name: quieter-firefox
+    repo: https://bitbucket.org/mrbbking/quieter-firefox.git
+
+kali_packages:
+  - awscli
+  - bettercap
+  - bloodhound
+  - cmake
+  - covenant-kbx
+  - dnsmasq
+  - docker.io
+  - docker-compose
+  - eyewitness
+  - gdb
+  - gdbserver
+  - ghidra
+  - gobuster
+  - golang
+  - gufw
+  - hcxtools
+  - htop
+  - jq
+  - mosh
+  - net-tools
+  - nfs-kernel-server
+  - patator
+  - powershell
+  - powershell-empire
+  - python3-dev
+  - python3-pip
+  - python-is-python3
+  - kali-linux-default
+  - keepassxc
+  - libgcrypt-dev
+  - libreoffice
+  - libssl-dev
+  - libpcap-dev
+  - nbtscan-unixwiz
+  - ncat
+  - neo4j
+  - parallel
+  - payloadsallthethings
+  - python-snap7
+  - realtek-rtl88xxau-dkms
+  - rlwrap
+  - seclists
+  - scite
+  - starkiller
+  - testssl.sh
+  - tmux
+  - ufw
+  - wireguard
+  - xclip
+  - xsel
+
+# Set as the user account that runs the ansible playbook
+kali_user: "{{ lookup('env','USER') }}"
+
+misc_downloads:
+  - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
+    dest: /opt/pspy/pspy64
+    mode: "0755"
+  - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64s
+    dest: /opt/pspy/pspy64s
+    mode: "0755"
+
+python_pip_packages:
+  - bloodhound
+  - capstone
+  - cython
+  - ctmodbus
+  - ctserial
+  - donut-shellcode
+  - mitm6
+  - pipenv
+  - poetry
+  - pyusb 
+  - pycrypto 
+  - pyserial 
+  - python-libpcap
+  - pwntools
+  - roadrecon
+  - ropper
+  - unicorn
+  
+
+ruby_gem_packages:
+  - winrm
+  - winrm-fs
+  - stringio
+  - evil-winrm
+
+ufw_application_profiles:
+  - responder
+
+# Extensions for VS Code
+vscode_extensions:
+  # Language extensions
+  - ms-python.python
+  - ms-vscode.cpptools
+  - ms-vscode.powershell
+  # Utility extensions
+  - esbenp.prettier-vscode
+
+# XFCE settings
+xfce_settings:
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/blank-on-ac", type: "int", value: "30" }
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-enabled", type: "bool", value: "true" }  
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-on-ac-off", type: "int", value: "0" }
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-on-ac-sleep", type: "int", value: "0" }
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/general-notification", type: "bool", value: "false" }
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/inactivity-on-ac", type: "int", value: "14" }
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/inactivity-sleep-mode-on-ac", type: "int", value: "1" }
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/lock-screen-suspend-hibernate", type: "bool", value: "true" }
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/logind-handle-lid-switch", type: "bool", value: "false" }
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/power-button-action", type: "int", value: "4" }
+  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/show-tray-icon", type: "bool", value: "false" }
+  # - { channel: "xfwm4", property: "/general/vblank_mode", type: "string", value: "xpresent" }
+  - { channel: "xfwm4", property: "/general/workspace_count", type: "int", value: "4" }

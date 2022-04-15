@@ -1,0 +1,232 @@
+---
+# Playbook for Kali
+
+# Deploy tools not found in the Kali repositories
+- hosts: kali
+  become: true
+  tasks:
+    - name: Install Burp Suite
+      ansible.builtin.include_role:
+        name: "ansible-role-burpsuite"
+
+    - name: Create .burpsuitepro_licensed after successful Pro install
+      ansible.builtin.file:
+        path: "{{ kali_user_details.home }}/.burpsuitepro_licensed"
+        state: touch
+      when: 'burpsuite_product_type == "pro"'
+
+    - name: Install Keystone Engine
+      ansible.builtin.include_role:
+        name: "ansible-role-keystone-engine"
+
+    - name: Install MS Visual Studio Code
+      ansible.builtin.include_role:
+        name: "ansible-role-vscode"
+
+    # Clone git repos
+    - name: Clone git repositories
+      ansible.builtin.git:
+        repo: "{{ item.repo }}"
+        dest: "/opt/{{ item.name }}"
+        version: "{{ item.version | default('master') }}"
+        depth: 1
+        force: true
+      loop: "{{ git_repos | flatten(levels=1) }}"
+
+    # Miscellaneous tools
+    - name: Ensure destination directory exists
+      ansible.builtin.file:
+        dest: "{{ item.dest | dirname }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+      loop: "{{ misc_downloads }}"
+            
+    - name: Download files
+      ansible.builtin.get_url:
+        url: "{{ item.url }}"
+        dest: "{{ item.dest }}"
+        owner: root
+        group: root
+        mode: "{{ item.mode | default('0644') }}"
+      loop: "{{ misc_downloads }}"
+
+#Clone and configure git repos that have additional install steps
+#Install Eavesarp  
+    - name: Clone EavesARP
+      ansible.builtin.git:
+        repo: "https://github.com/metaver5o/eavesarp.git"
+        dest: "/opt/eavesarp"
+    - name: Install Eavesarp
+      ansible.builtin.command: chdir=/opt/eavesarp {{ item }}
+      with_items:
+        - "python3 -m pip install -r requirements.txt"
+    - name: Link Eavesarp
+      ansible.builtin.file:
+        src: "/opt/eavesarp/eavesarp.py"
+        dest: "/usr/local/bin/eavesarp"
+        state: link
+#Install PCredz
+    - name: Clone PCredz
+      ansible.builtin.git:
+        repo: "https://github.com/lgandx/PCredz.git"
+        dest: "/opt/PCredz"
+    - name: Link PCredz
+      ansible.builtin.file:
+        src: "/opt/PCredz/Pcredz"
+        dest: "/usr/local/bin/pcredz"
+        state: link
+#Install Unicorn
+    - name: Clone Unicorn
+      ansible.builtin.git:
+        repo: "https://github.com/trustedsec/unicorn.git"
+        dest: "/opt/unicorn"
+    - name: Link Unicorn
+      ansible.builtin.file:
+        src: "/opt/unicorn/unicorn.py"
+        dest: "/usr/local/bin/unicorn"
+        state: link
+#Install KillerBeerm 
+    - name: Clone KillerBee
+      ansible.builtin.git:
+        repo: "https://github.com/riverloopsec/killerbee.git"
+        dest: "/opt/killerbee"
+    - name: Link kbbootloader
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/kbbootloader"
+        dest: "/usr/local/bin/kbbootloader"
+        state: link
+        mode: '0777'
+    - name: Link zbassocflood
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbassocflood"
+        dest: "/usr/local/bin/zbassocflood"
+        state: link
+        mode: '0777'        
+    - name: Link zbcat
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbcat"
+        dest: "/usr/local/bin/zbcat"
+        state: link
+        mode: '0777'
+    - name: Link zbconvert
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbconvert"
+        dest: "/usr/local/bin/zbconvert"
+        state: link
+        mode: '0777'
+    - name: Link zbdsniff
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbdsniff"
+        dest: "/usr/local/bin/zbdsniff"
+        state: link 
+        mode: '0777'    
+    - name: Link zbdump
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbdump"
+        dest: "/usr/local/bin/zbdump"
+        state: link
+        mode: '0777'
+    - name: Link zbfakebeacon
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbfakebeacon"
+        dest: "/usr/local/bin/zbfakebeacon"
+        state: link
+        mode: '0777'
+    - name: Link zbgoodfind
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbgoodfind"
+        dest: "/usr/local/bin/zbgoodfind"
+        state: link
+        mode: '0777'
+    - name: Link zbid
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbid"
+        dest: "/usr/local/bin/zbid"
+        state: link
+        mode: '0777'
+    - name: Link zbjammer
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbjammer"
+        dest: "/usr/local/bin/zbjammer"
+        state: link
+        mode: '0777'
+    - name: Link zbkey
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbkey"
+        dest: "/usr/local/bin/zbkey"
+        state: link
+        mode: '0777'
+    - name: Link zbopenear
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbopenear"
+        dest: "/usr/local/bin/zbopenear"
+        state: link
+        mode: '0777'
+    - name: Link zborphannotify
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zborphannotify"
+        dest: "/usr/local/bin/zborphannotify"
+        state: link
+        mode: '0777'
+    - name: Link zbpanidconflictflood
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbpanidconflictflood"
+        dest: "/usr/local/bin/zbpanidconflictflood"
+        state: link
+        mode: '0777'
+    - name: Link zbrealign
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbrealign"
+        dest: "/usr/local/bin/zbrealign"
+        state: link
+        mode: '0777'
+    - name: Link zbreplay
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbreplay"
+        dest: "/usr/local/bin/zbreplay"
+        state: link
+        mode: '0777'
+    - name: Link zbscapy
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbscapy"
+        dest: "/usr/local/bin/zbscapy"
+        state: link
+        mode: '0777'
+    - name: Link zbstumbler
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbstumbler"
+        dest: "/usr/local/bin/zbstumbler"
+        state: link
+        mode: '0777'
+    - name: Link zbwardrive
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbwardrive"
+        dest: "/usr/local/bin/zbwardrive"
+        state: link
+        mode: '0777'
+    - name: Link zbwireshark
+      ansible.builtin.file:
+        src: "/opt/killerbee/tools/zbwireshark"
+        dest: "/usr/local/bin/zbwireshark"
+        state: link
+        mode: '0777'
+
+#Install additional wordlists
+
+#Install SecLists
+    - name: Clone SecLists
+      ansible.builtin.git:
+        repo: "https://github.com/danielmiessler/SecLists.git"
+        dest: "/usr/share/wordlists/SecLists"     
+#Install Probable-Wordlists-v2.0
+    - name: Clone Probable-Wordlists-v2.0
+      ansible.builtin.git:
+        repo: "https://github.com/berzerk0/Probable-Wordlists.git"
+        dest: "/usr/share/wordlists/Probable-Wordlists-v2.0"
+#Install Probable-Wordlists-v2.0
+    - name: Clone Statistically-Likely-Usernames
+      ansible.builtin.git:
+        repo: "https://github.com/insidetrust/statistically-likely-usernames.git"
+        dest: "/usr/share/wordlists/Statistically-Likely-Usernames"
