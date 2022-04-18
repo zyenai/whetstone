@@ -6,12 +6,13 @@ burpsuite_user: "{{ kali_user }}"
 
 # Git repositories to clone to /opt
 # Various projects that are either not in Kali or are updated more frequently than Kali repos
-git_repos:
-  - name: privilege-escalation-awesome-scripts-suite
-    repo: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
-  - name: quieter-firefox
-    repo: https://bitbucket.org/mrbbking/quieter-firefox.git
+# git_repos:
+#  - name: privilege-escalation-awesome-scripts-suite
+#    repo: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
+#  - name: quieter-firefox
+#    repo: https://bitbucket.org/mrbbking/quieter-firefox.git
 
+# Vars for apt package installs
 kali_packages:
   - awscli
   - bettercap
@@ -51,7 +52,6 @@ kali_packages:
   - neo4j
   - parallel
   - payloadsallthethings
-  - python-snap7
   - realtek-rtl88xxau-dkms
   - rlwrap
   - seclists
@@ -67,14 +67,27 @@ kali_packages:
 # Set as the user account that runs the ansible playbook
 kali_user: "{{ lookup('env','USER') }}"
 
+# Vars for miscellaneous tools  
 misc_downloads:
-  - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
-    dest: /opt/pspy/pspy64
-    mode: "0755"
+# pspy 
+  - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32s
+    dest: /opt/pspy/pspy32s
   - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64s
-    dest: /opt/pspy/pspy64s
-    mode: "0755"
+    dest: /opt/pspy64s
+# sysinternals
+  - url: https://download.sysinternals.com/files/SysinternalsSuite.zip
+    dest: /usr/share/windows-binaries
+# winPEAS .bat
+  - url: "https://github.com/carlospolop/PEASS-ng/releases/download/20220417/winPEAS.bat"
+  - dest: /opt/privesc
+# winPEASx64.exe
+  - url: "https://github.com/carlospolop/PEASS-ng/releases/download/20220417/winPEASx64.exe"
+  - dest: /usr/local/windows-binaries
+# linPEAS
+  - url: "https://github.com/carlospolop/PEASS-ng/releases/download/20220417/linpeas.sh"
+  - dest: /opt/privesc
 
+# Vars for Pip packages
 python_pip_packages:
   - bloodhound
   - capstone
@@ -89,12 +102,13 @@ python_pip_packages:
   - pycrypto 
   - pyserial 
   - python-libpcap
+  - python-snap7
   - pwntools
   - roadrecon
   - ropper
   - unicorn
-  
 
+#Vars for gem installs  
 ruby_gem_packages:
   - winrm
   - winrm-fs

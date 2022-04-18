@@ -5,6 +5,7 @@
 - hosts: kali
   become: true
   tasks:
+    # Install Burp Suite
     - name: Install Burp Suite
       ansible.builtin.include_role:
         name: "ansible-role-burpsuite"
@@ -15,23 +16,28 @@
         state: touch
       when: 'burpsuite_product_type == "pro"'
 
-    - name: Install Keystone Engine
-      ansible.builtin.include_role:
-        name: "ansible-role-keystone-engine"
+#    - name: Install Keystone Engine
+#      ansible.builtin.include_role:
+#        name: "ansible-role-keystone-engine"
 
     - name: Install MS Visual Studio Code
       ansible.builtin.include_role:
         name: "ansible-role-vscode"
 
-    # Clone git repos
-    - name: Clone git repositories
-      ansible.builtin.git:
-        repo: "{{ item.repo }}"
-        dest: "/opt/{{ item.name }}"
-        version: "{{ item.version | default('master') }}"
-        depth: 1
-        force: true
-      loop: "{{ git_repos | flatten(levels=1) }}"
+#     Install Cobalt Strike
+#    - name: Install Cobalt Strike
+#     ansible.builtin.include_role:
+#        name: "ansible-role-cobalt-strike"
+
+#     Clone git repos
+#    - name: Clone git repositories
+#      ansible.builtin.git:
+#        repo: "{{ item.repo }}"
+#        dest: "/opt/{{ item.name }}"
+#        version: "{{ item.version | default('master') }}"
+#        depth: 1
+#        force: true
+#      loop: "{{ git_repos | flatten(levels=1) }}"
 
     # Miscellaneous tools
     - name: Ensure destination directory exists
@@ -49,11 +55,12 @@
         dest: "{{ item.dest }}"
         owner: root
         group: root
-        mode: "{{ item.mode | default('0644') }}"
+        mode: "{{ item.mode | default('0755') }}"
       loop: "{{ misc_downloads }}"
 
-#Clone and configure git repos that have additional install steps
-#Install Eavesarp  
+# Clone and configure Github repos. Can this be cleaned up and looped? How to handle the variety of post-clone install & config steps? Loop first for download and mode, then config?
+
+# Install Eavesarp  
     - name: Clone EavesARP
       ansible.builtin.git:
         repo: "https://github.com/metaver5o/eavesarp.git"
@@ -67,6 +74,7 @@
         src: "/opt/eavesarp/eavesarp.py"
         dest: "/usr/local/bin/eavesarp"
         state: link
+        mode: 0755
 #Install PCredz
     - name: Clone PCredz
       ansible.builtin.git:
@@ -77,6 +85,7 @@
         src: "/opt/PCredz/Pcredz"
         dest: "/usr/local/bin/pcredz"
         state: link
+        mode: 0755
 #Install Unicorn
     - name: Clone Unicorn
       ansible.builtin.git:
@@ -87,7 +96,7 @@
         src: "/opt/unicorn/unicorn.py"
         dest: "/usr/local/bin/unicorn"
         state: link
-#Install KillerBeerm 
+#Install KillerBee 
     - name: Clone KillerBee
       ansible.builtin.git:
         repo: "https://github.com/riverloopsec/killerbee.git"
@@ -97,121 +106,121 @@
         src: "/opt/killerbee/tools/kbbootloader"
         dest: "/usr/local/bin/kbbootloader"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbassocflood
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbassocflood"
         dest: "/usr/local/bin/zbassocflood"
         state: link
-        mode: '0777'        
+        mode: 0755        
     - name: Link zbcat
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbcat"
         dest: "/usr/local/bin/zbcat"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbconvert
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbconvert"
         dest: "/usr/local/bin/zbconvert"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbdsniff
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbdsniff"
         dest: "/usr/local/bin/zbdsniff"
         state: link 
-        mode: '0777'    
+        mode: 0755    
     - name: Link zbdump
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbdump"
         dest: "/usr/local/bin/zbdump"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbfakebeacon
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbfakebeacon"
         dest: "/usr/local/bin/zbfakebeacon"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbgoodfind
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbgoodfind"
         dest: "/usr/local/bin/zbgoodfind"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbid
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbid"
         dest: "/usr/local/bin/zbid"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbjammer
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbjammer"
         dest: "/usr/local/bin/zbjammer"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbkey
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbkey"
         dest: "/usr/local/bin/zbkey"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbopenear
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbopenear"
         dest: "/usr/local/bin/zbopenear"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zborphannotify
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zborphannotify"
         dest: "/usr/local/bin/zborphannotify"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbpanidconflictflood
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbpanidconflictflood"
         dest: "/usr/local/bin/zbpanidconflictflood"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbrealign
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbrealign"
         dest: "/usr/local/bin/zbrealign"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbreplay
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbreplay"
         dest: "/usr/local/bin/zbreplay"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbscapy
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbscapy"
         dest: "/usr/local/bin/zbscapy"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbstumbler
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbstumbler"
         dest: "/usr/local/bin/zbstumbler"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbwardrive
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbwardrive"
         dest: "/usr/local/bin/zbwardrive"
         state: link
-        mode: '0777'
+        mode: 0755
     - name: Link zbwireshark
       ansible.builtin.file:
         src: "/opt/killerbee/tools/zbwireshark"
         dest: "/usr/local/bin/zbwireshark"
         state: link
-        mode: '0777'
+        mode: 0755
 
 #Install additional wordlists
 
