@@ -71,21 +71,21 @@ kali_user: "{{ lookup('env','USER') }}"
 misc_downloads:
 # pspy 
   - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32s
-    dest: /opt/pspy/pspy32s
+    dest: /opt/pspy32s
   - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64s
     dest: /opt/pspy64s
 # sysinternals
   - url: https://download.sysinternals.com/files/SysinternalsSuite.zip
     dest: /usr/share/windows-binaries
 # winPEAS .bat
-  - url: "https://github.com/carlospolop/PEASS-ng/releases/download/20220417/winPEAS.bat"
-  - dest: /opt/privesc
+  - url: https://github.com/carlospolop/PEASS-ng/releases/download/20220417/winPEAS.bat
+    dest: /opt/privesc
 # winPEASx64.exe
-  - url: "https://github.com/carlospolop/PEASS-ng/releases/download/20220417/winPEASx64.exe"
-  - dest: /usr/local/windows-binaries
+  - url: https://github.com/carlospolop/PEASS-ng/releases/download/20220417/winPEASx64.exe
+    dest: /usr/local/windows-binaries
 # linPEAS
-  - url: "https://github.com/carlospolop/PEASS-ng/releases/download/20220417/linpeas.sh"
-  - dest: /opt/privesc
+  - url: https://github.com/carlospolop/PEASS-ng/releases/download/20220417/linpeas.sh
+    dest: /opt/privesc
 
 # Vars for Pip packages
 python_pip_packages:

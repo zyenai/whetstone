@@ -38,7 +38,6 @@ if [ $? -gt 0 ]; then
     exit 1
 fi
 
-
 echo -e "\n[+] Downloading required roles\n"
 ansible-galaxy role install --force -r requirements.yml
 if [ $? -gt 0 ]; then
