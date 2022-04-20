@@ -50,6 +50,7 @@ kali_packages:
   - nbtscan-unixwiz
   - ncat
   - neo4j
+  - openjdk-11-jdk
   - parallel
   - payloadsallthethings
   - realtek-rtl88xxau-dkms
