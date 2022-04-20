@@ -58,7 +58,7 @@
         mode: "{{ item.mode | default('0755') }}"
       loop: "{{ misc_downloads }}"
 
-# Clone and configure Github repos. Can this be cleaned up and looped? How to handle the variety of post-clone install & config steps? Loop first for download and mode, then config?
+# Clone and configure Github repos. Add loop task for linking to /usr/local/bin
 # Install Eavesarp  
     - name: Clone EavesARP
       ansible.builtin.git:
@@ -100,6 +100,10 @@
       ansible.builtin.git:
         repo: "https://github.com/riverloopsec/killerbee.git"
         dest: "/opt/killerbee"
+    - name: Install KillerBee
+      ansible.builtin.command: chdir=/opt/killerbee {{ item }}
+      with_items:
+        - "python3 setup.py install"
     - name: Link kbbootloader
       ansible.builtin.file:
         src: "/opt/killerbee/tools/kbbootloader"
@@ -225,8 +229,6 @@
       ansible.builtin.git:
         repo: "https://bitbucket.org/mrbbking/quieter-firefox.git"
         dest: "/opt/quieter-firefox"
-
-#Install additional wordlists
 #Install SecLists
     - name: Clone SecLists
       ansible.builtin.git:
