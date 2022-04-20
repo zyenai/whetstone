@@ -7,7 +7,7 @@ echo " ██║ █╗ ██║███████║█████╗     
 echo " ██║███╗██║██╔══██║██╔══╝     ██║   ╚════██║   ██║   ██║   ██║██║╚██╗██║██╔══╝  "
 echo " ╚███╔███╔╝██║  ██║███████╗   ██║   ███████║   ██║   ╚██████╔╝██║ ╚████║███████╗"
 echo "  ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝"
-echo " Sharpen your Kali to a knife edge sheen."
+echo " Sharpen Kali to a knife edge sheen."
 echo ""
 
 # Ensure .local/bin is in the PATH for ansible executables
