@@ -34,7 +34,7 @@
         state: started
         enabled: true
 
-    # Cobalt Strike
+    # Prep for Cobalt Strike
     - name: Make openjdk-11-jdk default
       ansible.builtin.command: sudo update-java-alternatives -s java-1.11.0-openjdk-amd64
 
