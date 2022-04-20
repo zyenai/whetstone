@@ -24,7 +24,6 @@ Tools:
 - awscli
 - bettercap
 - bloodhound
-- bloodhound
 - capstone
 - cmake
 - covenant-kbx

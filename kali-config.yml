@@ -34,6 +34,10 @@
         state: started
         enabled: true
 
+    # Cobalt Strike
+    - name: Make openjdk-11-jdk default
+      ansible.builtin.command: sudo update-java-alternatives -s java-1.11.0-openjdk-amd64
+
     # Disable automatic updates
     - name: Disable apt systemd timers
       ansible.builtin.systemd:
