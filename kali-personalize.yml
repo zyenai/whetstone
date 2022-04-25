@@ -95,3 +95,13 @@
         src: "files/gdb/.gdbinit"
         dest: "{{ kali_user_details.home }}/.gdbinit"
         mode: 0640
+
+    # Set some aliases
+    - name: Add Cobalt Strike alias
+      ansible.builtin.lineinfile:
+        path: /home/kali/.zshrc
+        line: "alias cobaltstrike='cd /opt/cobaltstrike && ./cobaltstrike'"
+        regexp: "^alias cobaltstrike='cd /opt/cobaltstrike && ./cobaltstrike'$"
+        state: present
+        insertafter: EOF
+        create: yes
