@@ -1,20 +1,27 @@
-# Ansible 4 Kali
->  Manually configuring Kali? Ain't nobody got time for that.
 
-These playbooks install most of the tools that I require along with some tweaks for hardening, personalization, and making Kali quieter. 
+```sh
+ ██╗    ██╗██╗  ██╗███████╗████████╗███████╗████████╗ ██████╗ ███╗   ██╗███████╗
+ ██║    ██║██║  ██║██╔════╝╚══██╔══╝██╔════╝╚══██╔══╝██╔═══██╗████╗  ██║██╔════╝
+ ██║ █╗ ██║███████║█████╗     ██║   ███████╗   ██║   ██║   ██║██╔██╗ ██║█████╗  
+ ██║███╗██║██╔══██║██╔══╝     ██║   ╚════██║   ██║   ██║   ██║██║╚██╗██║██╔══╝  
+ ╚███╔███╔╝██║  ██║███████╗   ██║   ███████║   ██║   ╚██████╔╝██║ ╚████║███████╗
+  ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+  > Sharpen Kali to a knife edge sheen.
+```
 
+Ansible playbooks to install additional tools, harden, and personalize Kali.
 
-How to use
+Usage:
 ------
 
-- Install Kali.
+- [Install Kali](https://www.kali.org/get-kali/).
 - Clone this repo:
     ```bash
     git clone https://github.com/illiterateTechpriest/whetstone-v2
     ```
 - Run the deploy script:
     ```bash
-    cd ansible-playbook-kali
+    cd whetstone-v2
     ./deploy.sh
     ```
 
