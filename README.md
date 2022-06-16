@@ -19,6 +19,7 @@ Usage:
     ```zsh
     git clone https://github.com/illiterateTechpriest/whetstone-v2
     cd whetstone-v2
+    sudo chmod +x deploy.sh
     ./deploy.sh
     ```
 
