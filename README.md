@@ -9,7 +9,7 @@
   > Sharpen Kali to a knife edge sheen
 ```
 
-Ansible playbooks to install additional tools, harden, and personalize Kali.
+Ansible playbook to harden, personalize, and prep a fresh Kali install
 
 Usage:
 ------
