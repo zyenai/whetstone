@@ -14,13 +14,10 @@ Ansible playbooks to install additional tools, harden, and personalize Kali.
 Usage:
 ------
 
-- [Install Kali](https://www.kali.org/get-kali/).
-- Clone this repo:
+- [Install Kali](https://www.kali.org/get-kali/)
+- Clone this repo and run the deploy script:
     ```bash
     git clone https://github.com/illiterateTechpriest/whetstone-v2
-    ```
-- Run the deploy script:
-    ```bash
     cd whetstone-v2
     ./deploy.sh
     ```
