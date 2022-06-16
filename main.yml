@@ -2,9 +2,6 @@
 - name: User choices
   hosts: kali
   vars:
-    burpsuite_products_map:
-      - { name: Burp Suite Community, alias: community }
-      - { name: Burp Suite Professional, alias: pro }
   tasks:
     - name: Get user details
       user:
@@ -19,42 +16,6 @@
     - name: Load .a4k_config.yml
       ansible.builtin.include_vars: "{{ kali_user_details.home }}/.a4k_config.yml"
       when: config_yml.stat.exists
-
-    - block:
-        - name: Burp Suite edition prompt
-          ansible.builtin.pause:
-            prompt: |
-              What Burp Suite product would you like to install?
-                {% for p in burpsuite_products_map %}
-                {{ loop.index }}. {{ p['name'] }}
-                {% endfor %}
-
-              Enter the number for the product
-          register: _burpsuite_choice
-
-        - name: Set product type fact
-          ansible.builtin.set_fact:
-            burpsuite_product_type: "{{ burpsuite_products_map[_burpsuite_choice.user_input|default(omit)|int - 1]['alias'] }}"
-      when: 'burpsuite_product_type is undefined'
-
-    - name: Check .burpsuitepro_licensed file
-      stat:
-        path: "{{ kali_user_details.home }}/.burpsuitepro_licensed"
-      register: check_burpsuitepro_licensed
-      when: 'burpsuite_product_type == "pro"'
-
-    - block:
-        - name: Burp Suite License prompt
-          ansible.builtin.pause:
-            prompt: "Enter the Burp Suite Pro license key:"
-          register: _burpsuite_license
-
-        - name: Set Burp Suite license key fact
-          ansible.builtin.set_fact:
-            burpsuite_license_key: "{{ _burpsuite_license.user_input }}"
-      when: 
-        - 'burpsuite_product_type == "pro"'
-        - 'not check_burpsuitepro_licensed.stat.exists'
 
     - name: Save config
       ansible.builtin.template:
