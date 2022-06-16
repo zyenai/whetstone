@@ -63,3 +63,7 @@
 - Install CrackMapExec from PyPI as it is more recent than the Kali version
 - Install Pwntools from PyPI
 - Updated VS Code plugins
+
+## 2022.06.16
+- Removed BurpSuite, Keystone Engine, and Cobalt Strike as currently referenced roles are broken and need to be debugged
+- Cleaned up git repo processing 
