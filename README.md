@@ -6,7 +6,7 @@
  ██║███╗██║██╔══██║██╔══╝     ██║   ╚════██║   ██║   ██║   ██║██║╚██╗██║██╔══╝  
  ╚███╔███╔╝██║  ██║███████╗   ██║   ███████║   ██║   ╚██████╔╝██║ ╚████║███████╗
   ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝
-  > Sharpen Kali to a knife edge sheen.
+  > Sharpen Kali to a knife edge sheen
 ```
 
 Ansible playbooks to install additional tools, harden, and personalize Kali.
