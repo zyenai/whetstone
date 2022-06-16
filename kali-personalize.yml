@@ -16,14 +16,14 @@
       loop:
         - ".local/bin"
 
-    # XFCE settings
-    - name: Apply XFCE settings
-      community.general.xfconf:
-        channel: "{{ item.channel }}"
-        property: "{{ item.property }}"
-        value_type: "{{ item.type }}"
-        value: "{{ item.value }}"
-      loop: "{{ xfce_settings }}"
+#    # XFCE settings
+#    - name: Apply XFCE settings
+#      community.general.xfconf:
+#        channel: "{{ item.channel }}"
+#        property: "{{ item.property }}"
+#        value_type: "{{ item.type }}"
+#        value: "{{ item.value }}"
+#      loop: "{{ xfce_settings }}"
 
     # tmux
     - name: Copy tmux config
