@@ -4,15 +4,30 @@ burpsuite_cacert_path: "{{ burpsuite_extras_dir }}/PortSwigger_CA.der"
 burpsuite_extras_dir: "/home/{{ kali_user }}/BurpSuiteExtras"
 burpsuite_user: "{{ kali_user }}"
 
-# Git repositories to clone to /opt
-# Various projects that are either not in Kali or are updated more frequently than Kali repos
-# git_repos:
-#  - name: privilege-escalation-awesome-scripts-suite
-#    repo: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
-#  - name: quieter-firefox
-#    repo: https://bitbucket.org/mrbbking/quieter-firefox.git
+# Git repositories for projects that are either not in Kali or are updated more frequently than Kali repos
+git_repos:
+  - name: privilege-escalation-awesome-scripts-suite
+    repo: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
+  - name: quieter-firefox
+    repo: https://bitbucket.org/mrbbking/quieter-firefox.git
+  - name: eavesarp
+    repo: https://github.com/metaver5o/eavesarp.git
+  - name: pcredz
+    repo: https://github.com/lgandx/PCredz.git
+  - name: unicorn
+    repo: https://github.com/trustedsec/unicorn.git
+  - name: killerbee
+    repo: https://github.com/riverloopsec/killerbee.git
 
-# Vars for apt package installs
+wordlist_repos:    
+  - name: SecLists
+    repo: https://github.com/danielmiessler/SecLists.git
+  - name: Probable-Wordlists
+    repo: https://github.com/berzerk0/Probable-Wordlists.git
+  - name: statistically-likely-usernames
+    repo: https://github.com/insidetrust/statistically-likely-usernames.git
+
+# Vars for additional Kali package installs
 kali_packages:
   - awscli
   - bettercap
@@ -70,21 +85,16 @@ kali_user: "{{ lookup('env','USER') }}"
 
 # Vars for miscellaneous tools  
 misc_downloads:
-# pspy 
   - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32s
     dest: /opt/pspy32s
   - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64s
     dest: /opt/pspy64s
-# sysinternals
   - url: https://download.sysinternals.com/files/SysinternalsSuite.zip
     dest: /usr/share/windows-binaries
-# winPEAS .bat
   - url: https://github.com/carlospolop/PEASS-ng/releases/download/20220417/winPEAS.bat
     dest: /opt/privesc
-# winPEASx64.exe
   - url: https://github.com/carlospolop/PEASS-ng/releases/download/20220417/winPEASx64.exe
     dest: /usr/local/windows-binaries
-# linPEAS
   - url: https://github.com/carlospolop/PEASS-ng/releases/download/20220417/linpeas.sh
     dest: /opt/privesc
 
@@ -109,7 +119,7 @@ python_pip_packages:
   - ropper
   - unicorn
 
-#Vars for gem installs  
+# Vars for gem installs  
 ruby_gem_packages:
   - winrm
   - winrm-fs
@@ -129,17 +139,17 @@ vscode_extensions:
   - esbenp.prettier-vscode
 
 # XFCE settings
-xfce_settings:
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/blank-on-ac", type: "int", value: "30" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-enabled", type: "bool", value: "true" }  
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-on-ac-off", type: "int", value: "0" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-on-ac-sleep", type: "int", value: "0" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/general-notification", type: "bool", value: "false" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/inactivity-on-ac", type: "int", value: "14" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/inactivity-sleep-mode-on-ac", type: "int", value: "1" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/lock-screen-suspend-hibernate", type: "bool", value: "true" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/logind-handle-lid-switch", type: "bool", value: "false" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/power-button-action", type: "int", value: "4" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/show-tray-icon", type: "bool", value: "false" }
-  # - { channel: "xfwm4", property: "/general/vblank_mode", type: "string", value: "xpresent" }
-  - { channel: "xfwm4", property: "/general/workspace_count", type: "int", value: "4" }
+#xfce_settings:
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/blank-on-ac", type: "int", value: "30" }
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-enabled", type: "bool", value: "true" }  
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-on-ac-off", type: "int", value: "0" }
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-on-ac-sleep", type: "int", value: "0" }
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/general-notification", type: "bool", value: "false" }
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/inactivity-on-ac", type: "int", value: "14" }
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/inactivity-sleep-mode-on-ac", type: "int", value: "1" }
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/lock-screen-suspend-hibernate", type: "bool", value: "true" }
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/logind-handle-lid-switch", type: "bool", value: "false" }
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/power-button-action", type: "int", value: "4" }
+#  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/show-tray-icon", type: "bool", value: "false" }
+#  - { channel: "xfwm4", property: "/general/vblank_mode", type: "string", value: "xpresent" }
+#  - { channel: "xfwm4", property: "/general/workspace_count", type: "int", value: "4" }
