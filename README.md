@@ -99,7 +99,7 @@ Tools:
 Credits
 -------
 
-Original author: [@iesplin](https://github.com/)
+Original author: [@iesplin](https://github.com/iesplin/ansible-playbook-kali)
 
 Remix by: [@illiterateTechpriest](https://github.com/illiterateTechpriest/)
 
