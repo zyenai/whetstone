@@ -27,8 +27,9 @@ wordlist_repos:
   - name: statistically-likely-usernames
     repo: https://github.com/insidetrust/statistically-likely-usernames.git
 
-# Vars for additional Kali package installs
+# Vars for additional Kali packages
 kali_packages:
+  - ansible-core
   - awscli
   - bettercap
   - bloodhound
@@ -43,7 +44,6 @@ kali_packages:
   - ghidra
   - gobuster
   - golang
-  - gufw
   - hcxtools
   - htop
   - jq
@@ -137,16 +137,4 @@ vscode_extensions:
   - ms-vscode.powershell
   # Utility extensions
   - esbenp.prettier-vscode
-
-# XFCE settings
-xfce_settings:
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-enabled", type: "bool", value: "true" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/blank-on-ac", type: "int", value: "0" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-on-ac-off", type: "int", value: "0" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/dpms-on-ac-sleep", type: "int", value: "0" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/general-notification", type: "bool", value: "false" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/inactivity-on-ac", type: "int", value: "0" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/inactivity-sleep-mode-on-ac", type: "int", value: "1" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/lock-screen-suspend-hibernate", type: "bool", value: "true" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/logind-handle-lid-switch", type: "bool", value: "false" }
-  - { channel: "xfce4-power-manager", property: "/xfce4-power-manager/power-button-action", type: "int", value: "4" }
+  
