@@ -45,7 +45,7 @@ if [ $? -gt 0 ]; then
     exit 1    
 fi
 
-echo -e "\n[+] Running Whetstone playbooks\n"
+echo -e "\n[+] Running playbooks and sharpening Kali \n"
 ansible-playbook -i inventory --ask-become-pass main.yml
 if [ $? -gt 0 ]; then
     echo "[!] Error occurred during playbook run."
