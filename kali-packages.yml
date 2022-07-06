@@ -1,17 +1,18 @@
 ---
-# Playbook for Kali
-
 # Update Kali and deploy packages
-- hosts: kali
+- hosts: all
   become: true
   tasks:
-    - name: Update apt package lists
+    - name: Update apt
       ansible.builtin.apt:
         update_cache: true
 
-    - name: Ensure apt-transport-https package is installed
+    - name: Ensure apt packages are installed
       ansible.builtin.apt:
-        name: apt-transport-https
+        name:
+          - apt-transport-https
+          - apt-utils
+          - ca-certificates
         state: present
     
     - name: Configure sources.list to use HTTPS
@@ -37,16 +38,42 @@
       ansible.builtin.apt:
         autoclean: true
 
+    # Python packages
+    - name: Ensure packages for Python pip are installed
+      ansible.builtin.apt:
+        name:
+          - python3-dev
+          - python3-pip
+          - python3-setuptools
+        state: present
+      register: apt_pip_packages
+      until: apt_pip_packages is success
+      retries: 1
+      delay: 10
+
     - name: Install Python Pip Packages
       ansible.builtin.pip:
         name: "{{ item }}"
         state: latest
         executable: pip3
       loop: "{{ python_pip_packages }}"
-
+    
+    # Ruby packages
+    - name: Ensure packages for Ruby gems are installed
+      ansible.builtin.apt:
+        name:
+          - ruby-dev
+          - ruby-rubygems
+        state: present
+      register: apt_rubygems_packages
+      until: apt_rubygems_packages is success
+      retries: 1
+      delay: 10
+      
     - name: Install Ruby Gem Packages
       community.general.gem:
         name: "{{ item }}"
         state: latest
         user_install: false
+        norc: true
       loop: "{{ ruby_gem_packages }}"
