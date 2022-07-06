@@ -1,8 +1,6 @@
 ---
-# Playbook for Kali
-
 ## Personalize Kali
-- hosts: kali
+- hosts: all
   become: true
   become_user: "{{ kali_user }}"
   tasks:
@@ -15,15 +13,6 @@
         mode: 0750
       loop:
         - ".local/bin"
-
-#    # XFCE settings
-#    - name: Apply XFCE settings
-#      community.general.xfconf:
-#        channel: "{{ item.channel }}"
-#        property: "{{ item.property }}"
-#        value_type: "{{ item.type }}"
-#        value: "{{ item.value }}"
-#      loop: "{{ xfce_settings }}"
 
     # tmux
     - name: Copy tmux config
