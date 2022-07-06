@@ -1,8 +1,6 @@
 ---
-# Playbook for Kali
-
 # Deploy tools not found in the Kali repositories
-- hosts: kali
+- hosts: all
   become: true
   tasks:
   # Install VSCode
