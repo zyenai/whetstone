@@ -80,6 +80,7 @@ kali_packages:
   - ufw
   - wireguard
   - xclip
+  - xrdp
   - xsel
 
 # Vars for miscellaneous tools  

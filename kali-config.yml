@@ -49,6 +49,20 @@
       tags:
         - molecule-notest
 
+    # RDP
+    - name: Enable xrdp
+      ansible.builtin.systemd:
+        name: xrdp.service
+        state: started
+        enabled: true
+
+    # SSH
+    - name: Enable ssh
+      ansible.builtin.systemd:
+        name: ssh.service
+        state: started
+        enabled: true   
+
     # Disable automatic updates
     - name: Disable apt systemd timers
       ansible.builtin.systemd:
