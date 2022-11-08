@@ -1,0 +1,4 @@
+[remote_admin]
+title=remote_admin
+description=RDP & SSH for remote administration
+ports=22/tcp|3389/tcp
