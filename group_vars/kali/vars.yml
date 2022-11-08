@@ -72,6 +72,7 @@ kali_packages:
   - parallel
   - payloadsallthethings
   - realtek-rtl88xxau-dkms
+  - remmina
   - rlwrap
   - seclists
   - scite
@@ -100,21 +101,34 @@ misc_downloads:
 
 # Vars for Pip packages
 python_pip_packages:
+  - asyncua
+  - BAC0
+  - bacpypes
   - bloodhound
+  - bokeh
   - capstone
+  - cpppo
   - cython
   - ctmodbus
   - ctserial
   - donut-shellcode
   - mitm6
+  - opcua-client
+  - pandas
+  - paramiko
   - pipenv
   - poetry
+  - pycomm3
   - pyusb 
-  - pycrypto 
-  - pyserial 
+  - pycrypto
+  - pylogix
+  - pymodbus
+  - pypykatz
+  - pyserial
   - python-libpcap
   - python-snap7
   - pwntools
+  - requests
   - roadrecon
   - ropper
   - unicorn
