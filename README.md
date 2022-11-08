@@ -6,10 +6,9 @@
  ██║███╗██║██╔══██║██╔══╝     ██║   ╚════██║   ██║   ██║   ██║██║╚██╗██║██╔══╝  
  ╚███╔███╔╝██║  ██║███████╗   ██║   ███████║   ██║   ╚██████╔╝██║ ╚████║███████╗
   ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝
-  > Sharpen Kali to a knife edge sheen
 ```
 
-Ansible playbook to harden, personalize, and prep a fresh Kali install
+Ansible playbook to prep, harden, and personalize a fresh Kali install.
 
 Usage:
 ------
@@ -50,7 +49,6 @@ Tools:
 - htop
 - jq
 - kali-linux-default
-- keepassxc
 - libgcrypt-dev
 - libpcap-dev
 - libreoffice
@@ -81,6 +79,7 @@ Tools:
 - python3-pip
 - pyusb 
 - realtek-rtl88xxau-dkms
+- remmina
 - rlwrap
 - roadrecon
 - ropper
