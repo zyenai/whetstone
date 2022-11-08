@@ -19,8 +19,6 @@ git_repos:
     repo: https://github.com/lgandx/PCredz.git
   - name: unicorn
     repo: https://github.com/trustedsec/unicorn.git
-  - name: killerbee
-    repo: https://github.com/riverloopsec/killerbee.git
 
 wordlist_repos:    
   - name: SecLists

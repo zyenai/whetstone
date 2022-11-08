@@ -69,7 +69,3 @@
         src: "/opt/unicorn/unicorn.py"
         dest: "/usr/local/bin/unicorn"
         state: link
-    - name: Install KillerBee
-      ansible.builtin.command: chdir=/opt/killerbee {{ item }}
-      with_items:
-        - "python3 setup.py install"
