@@ -120,6 +120,7 @@ python_pip_packages:
   - pycomm3
   - pyusb 
   - pycrypto
+  - pycryptodome
   - pylogix
   - pymodbus
   - pypykatz

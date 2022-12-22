@@ -16,8 +16,8 @@ Usage:
 - [Install Kali](https://www.kali.org/get-kali/)
 - Clone this repo and run the deploy script:
     ```zsh
-    git clone https://github.com/illiterateTechpriest/whetstone-v2
-    cd whetstone-v2
+    git clone https://github.com/zyenai/whetstone
+    cd whetstone
     sudo chmod +x deploy.sh
     ./deploy.sh
     ```
