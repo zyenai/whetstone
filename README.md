@@ -23,7 +23,7 @@ Usage:
     ```
 Notes:
 ------
-This playbook configures [ufw](https://wiki.ubuntu.com/UncomplicatedFirewall) to block all incoming traffic. Two ufw profiles are included in 'files/ufw/applications.d', you may need to add your own. 
+This playbook configures [ufw](https://wiki.ubuntu.com/UncomplicatedFirewall) to block all incoming traffic. Two ufw profiles are included in `files/ufw/applications.d`. If you're not catching your shell, check ufw.  
 
 Tools:
 -------
