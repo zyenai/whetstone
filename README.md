@@ -21,6 +21,9 @@ Usage:
     sudo chmod +x deploy.sh
     ./deploy.sh
     ```
+Notes:
+------
+This playbook configures [ufw](https://wiki.ubuntu.com/UncomplicatedFirewall) to block all incoming traffic. Two ufw profiles are included in 'files/ufw/applications.d', you may need to add your own. 
 
 Tools:
 -------
