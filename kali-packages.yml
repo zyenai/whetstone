@@ -51,6 +51,14 @@
       retries: 1
       delay: 10
 
+    - name: Longintrepr.h dependency workaround for pycrypto
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/python/cpython/main/Include/cpython/longintrepr.h
+        dest: /usr/include/python3.11
+        owner: root
+        group: root
+        mode: 0644
+
     - name: Install Python Pip Packages
       ansible.builtin.pip:
         name: "{{ item }}"
