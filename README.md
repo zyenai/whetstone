@@ -8,7 +8,7 @@
   ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 ```
 
-Ansible playbook to prep, harden, and personalize a fresh Kali install.
+Ansible playbook to prep, harden, and personalize a fresh Kali install with an eye towards industrial control system pentesting. 
 
 Usage:
 ------
