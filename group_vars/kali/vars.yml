@@ -29,6 +29,7 @@ git_repos:
     repo: https://github.com/SySS-Research/Seth.git
   - name: summon_c2
     repo: https://github.com/zyenai/summon_c2.git
+    version: main
 
 wordlist_repos:    
   - name: SecLists
