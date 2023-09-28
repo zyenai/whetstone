@@ -19,6 +19,16 @@ git_repos:
     repo: https://github.com/lgandx/PCredz.git
   - name: unicorn
     repo: https://github.com/trustedsec/unicorn.git
+  - name: bettercap
+    repo: https://github.com/bettercap/bettercap.git
+  - name: qmodbus
+    repo: https://github.com/ed-chemnitz/qmodbus.git
+  - name: ghostpack
+    repo: https://github.com/r3motecontrol/Ghostpack-CompiledBinaries.git
+  - name: seth
+    repo: https://github.com/SySS-Research/Seth.git
+#  - name: crackmapexec
+#    repo: https://github.com/mpgn/CrackMapExec.git
 
 wordlist_repos:    
   - name: SecLists
@@ -34,6 +44,7 @@ kali_packages:
   - awscli
   - bettercap
   - bloodhound
+  - bmon
   - cmake
   - covenant-kbx
   - dnsmasq
@@ -48,27 +59,32 @@ kali_packages:
   - hcxtools
   - htop
   - jq
-  - mosh
-  - net-tools
-  - nfs-kernel-server
-  - patator
-  - powershell
-  - powershell-empire
-  - python3-dev
-  - python3-pip
-  - python-is-python3
   - kali-linux-default
   - keepassxc
   - libgcrypt-dev
+  - libnetfilter-queue-dev
+  - libpcap-dev
   - libreoffice
   - libssl-dev
-  - libpcap-dev
+  - libusb-1.0-0-dev
+  - mosh
+  - net-tools
+  - nfs-kernel-server
   - nbtscan-unixwiz
   - ncat
   - neo4j
   - openjdk-11-jdk
   - parallel
   - payloadsallthethings
+  - patator
+  - powershell
+  - powershell-empire
+  - python3-dev
+  - python3-pip
+  - python-is-python3
+  - python-dev-is-python3
+  - qt5-qmake # Qmodbus build dependency
+  - qtbase5-dev # Qmodbus build dependency
   - realtek-rtl88xxau-dkms
   - remmina
   - rlwrap
@@ -85,18 +101,24 @@ kali_packages:
 
 # Vars for miscellaneous tools  
 misc_downloads:
-  - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32s
-    dest: /opt/pspy32s
-  - url: https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64s
-    dest: /opt/pspy64s
+  - url: https://github.com/DominicBreuker/pspy/releases/latest/download/pspy32s
+    dest: /opt/pspy/
+  - url: https://github.com/DominicBreuker/pspy/releases/latest/download/pspy64s
+    dest: /opt/pspy/
   - url: https://download.sysinternals.com/files/SysinternalsSuite.zip
-    dest: /usr/share/windows-binaries
-  - url: https://github.com/carlospolop/PEASS-ng/releases/download/20220417/winPEAS.bat
-    dest: /opt/privesc
-  - url: https://github.com/carlospolop/PEASS-ng/releases/download/20220417/winPEASx64.exe
-    dest: /usr/local/windows-binaries
-  - url: https://github.com/carlospolop/PEASS-ng/releases/download/20220417/linpeas.sh
-    dest: /opt/privesc
+    dest: /usr/share/windows-binaries/
+  - url: https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEAS.bat
+    dest: /opt/privesc/
+  - url: https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx64.exe
+    dest: /usr/share/windows-binaries/
+  - url: https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh
+    dest: /opt/privesc/
+  - url: https://github.com/mpgn/CrackMapExec/releases/download/v6.0.0/cme-ubuntu-latest-3.11.zip
+    dest: /opt/crackmapexec/
+  - url: https://github.com/mpgn/CrackMapExec/releases/download/v6.0.0/cmedb-ubuntu-latest-3.11.zip
+    dest: /opt/crackmapexec/
+  - url: https://github.com/mubix/solarflare/releases/download/latest/SolarFlare.exe
+    dest: /usr/share/windows-binaries/
 
 # Vars for Pip packages
 python_pip_packages:

@@ -3,12 +3,12 @@
 - hosts: all
   become: true
   tasks:
-  # Install VSCode
+    # Install VSCode
     - name: Install MS Visual Studio Code
       ansible.builtin.include_role:
         name: "ansible-role-vscode"
 
-# Clone git repos
+    # Clone git repos
     - name: Clone git repositories
       ansible.builtin.git:
         repo: "{{ item.repo }}"
@@ -18,7 +18,7 @@
         force: true
       loop: "{{ git_repos | flatten(levels=1) }}"
 
-# Clone wordlist repos
+    # Clone wordlist repos
     - name: Clone wordlist repositories
       ansible.builtin.git:
         repo: "{{ item.repo }}"
@@ -31,7 +31,7 @@
     # Miscellaneous tools
     - name: Ensure destination directory exists
       ansible.builtin.file:
-        dest: "{{ item.dest | dirname }}"
+        path: "{{ item.dest | dirname }}"
         state: directory
         owner: root
         group: root
@@ -41,13 +41,13 @@
     - name: Download files
       ansible.builtin.get_url:
         url: "{{ item.url }}"
-        dest: "{{ item.dest }}"
+        dest: "{{ item.dest | dirname }}/{{ item.url | basename }}"
         owner: root
         group: root
         mode: "{{ item.mode | default('0755') }}"
       loop: "{{ misc_downloads }}"
 
-# Install, configure, and link tools to /usr/local/bin
+    # Install, configure, and link tools to /usr/local/bin
     - name: Install Eavesarp
       ansible.builtin.command: chdir=/opt/eavesarp {{ item }}
       with_items:
@@ -69,3 +69,59 @@
         src: "/opt/unicorn/unicorn.py"
         dest: "/usr/local/bin/unicorn"
         state: link
+    - name: Build Qmodbus
+      ansible.builtin.command: "{{ item }}"
+      loop:
+        - mkdir -p /opt/qmodbus/build
+        - qmake /opt/qmodbus -o /opt/qmodbus/build/Makefile
+        - make --directory=/opt/qmodbus/build
+      tags: qmodbus
+    - name: Link Qmodbus
+      ansible.builtin.file:
+        src: "/opt/qmodbus/build/qmodbus"
+        dest: "/usr/local/bin/qmodbus"
+        state: link
+        mode: 0755
+      tags: qmodbus
+    - name: Build Bettercap
+      ansible.builtin.command: chdir=/opt/bettercap {{ item }}
+      with_items:
+        - "go install"
+        - "go build"
+      tags: bettercap
+    - name: Replace bettercap
+      ansible.builtin.copy:
+        src: "/opt/bettercap/bettercap"
+        dest: "/usr/bin/bettercap"
+        owner: root
+        group: root
+        mode: 0755
+      tags: bettercap
+    - name: Update Bettercap Modules
+      ansible.builtin.command: bettercap -eval 'caplets.update; ui.update; q'
+      tags: bettercap
+    - name: Unzip CrackMapExec (overwrite)
+      unarchive:
+        src: "{{ item }}"
+        dest: /usr/bin/
+        copy: no
+      loop:
+        - /opt/crackmapexec/cme-ubuntu-latest-3.11.zip
+        - /opt/crackmapexec/cmedb-ubuntu-latest-3.11.zip
+      tags: crackmapexec
+    - name: Set Mode for CrackMapExec
+      ansible.builtin.file:
+        path: "{{ item }}"
+        mode: '0755'
+      loop:
+        - /usr/bin/cme
+        - /usr/bin/cmedb
+      tags: crackmapexec
+    - name: Link CME (convenience alias)
+      ansible.builtin.file:
+        src: "/usr/bin/cme"
+        dest: "/usr/bin/crackmapexec"
+        state: link
+        mode: 0755
+        force: yes
+      tags: crackmapexec
