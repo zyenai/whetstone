@@ -27,8 +27,8 @@ git_repos:
     repo: https://github.com/r3motecontrol/Ghostpack-CompiledBinaries.git
   - name: seth
     repo: https://github.com/SySS-Research/Seth.git
-#  - name: crackmapexec
-#    repo: https://github.com/mpgn/CrackMapExec.git
+  - name: summon_c2
+    repo: https://github.com/zyenai/summon_c2.git
 
 wordlist_repos:    
   - name: SecLists
@@ -64,7 +64,6 @@ kali_packages:
   - libgcrypt-dev
   - libnetfilter-queue-dev
   - libpcap-dev
-  - libreoffice
   - libssl-dev
   - libusb-1.0-0-dev
   - mosh
