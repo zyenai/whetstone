@@ -113,9 +113,9 @@ misc_downloads:
     dest: /usr/share/windows-binaries/
   - url: https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh
     dest: /opt/privesc/
-  - url: https://github.com/mpgn/CrackMapExec/releases/download/v6.0.0/cme-ubuntu-latest-3.11.zip
+  - url: https://github.com/byt3bl33d3r/CrackMapExec/releases/download/v5.4.0/cme-ubuntu-latest-3.11.zip
     dest: /opt/crackmapexec/
-  - url: https://github.com/mpgn/CrackMapExec/releases/download/v6.0.0/cmedb-ubuntu-latest-3.11.zip
+  - url: https://github.com/byt3bl33d3r/CrackMapExec/releases/download/v5.4.0/cmedb-ubuntu-latest-3.11.zip
     dest: /opt/crackmapexec/
   - url: https://github.com/mubix/solarflare/releases/download/latest/SolarFlare.exe
     dest: /usr/share/windows-binaries/
