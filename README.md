@@ -1,7 +1,7 @@
 
 > "You're a new face. No matter, it's all the same. Lay out your arms. Let's get smithing."
 
-Ansible playbook to prep, harden, and personalize a fresh Kali install with an eye towards industrial control system pentesting. 
+Ansible playbook to prep, harden, and personalize a fresh Kali install, honed with an eye towards industrial control system pentesting. 
 
 Usage:
 ------
