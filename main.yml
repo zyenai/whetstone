@@ -3,11 +3,6 @@
   hosts: all
   become: true
   vars:
-  vars_prompt:
-  - name: wordlists
-    prompt: Do you want to download wordlists? [Yes/No]
-    private: false
-
   tasks:
     # Ensure user is created. Do not change password if user exists
     - name: Create kali user

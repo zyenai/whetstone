@@ -40,7 +40,6 @@
         state: started
         enabled: true
         
-
     # AppArmor
     - name: Enable AppArmor
       ansible.builtin.systemd:
