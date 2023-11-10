@@ -31,14 +31,6 @@ git_repos:
     repo: https://github.com/zyenai/summon_c2.git
     version: main
 
-wordlist_repos:    
-  - name: SecLists
-    repo: https://github.com/danielmiessler/SecLists.git
-  - name: Probable-Wordlists
-    repo: https://github.com/berzerk0/Probable-Wordlists.git
-  - name: statistically-likely-usernames
-    repo: https://github.com/insidetrust/statistically-likely-usernames.git
-
 # Vars for additional Kali packages
 kali_packages:
   - ansible-core
