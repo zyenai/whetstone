@@ -7,9 +7,6 @@
   - name: wordlists
     prompt: Do you want to download wordlists? [Yes/No]
     private: false
-  - name: firewall
-    prompt: Do you want to enable ufw to block incoming connections? [Yes/No]
-    private: false
 
   tasks:
     # Ensure user is created. Do not change password if user exists

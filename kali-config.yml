@@ -24,7 +24,6 @@
         state: enabled
         direction: incoming
         default: reject
-        when: firewall|bool == true
 
     - name: Copy application profiles
       ansible.builtin.copy:
