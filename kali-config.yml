@@ -37,8 +37,10 @@
     - name: Enable UFW
       ansible.builtin.systemd:
         name: ufw.service
+        when: firewall|bool == true
         state: started
         enabled: true
+        
 
     # AppArmor
     - name: Enable AppArmor

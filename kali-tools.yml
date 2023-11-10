@@ -20,6 +20,7 @@
 
     # Clone wordlist repos
     - name: Clone wordlist repositories
+      when: wordlists|bool == true
       ansible.builtin.git:
         repo: "{{ item.repo }}"
         dest: "/usr/share/wordlists/{{ item.name }}"
