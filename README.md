@@ -60,6 +60,7 @@ Tools:
 - nbtscan-unixwiz
 - ncat
 - neo4j
+- netexec
 - net-tools
 - nfs-kernel-server
 - opcua-client
