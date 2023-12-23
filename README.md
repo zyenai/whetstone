@@ -61,6 +61,7 @@ Tools:
 - ncat
 - neo4j
 - net-tools
+- netexec
 - nfs-kernel-server
 - opcua-client
 - openjdk-11-jdk

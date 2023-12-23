@@ -19,8 +19,6 @@ git_repos:
     repo: https://github.com/lgandx/PCredz.git
   - name: unicorn
     repo: https://github.com/trustedsec/unicorn.git
-  - name: bettercap
-    repo: https://github.com/bettercap/bettercap.git
   - name: qmodbus
     repo: https://github.com/ed-chemnitz/qmodbus.git
   - name: ghostpack
@@ -36,6 +34,7 @@ kali_packages:
   - ansible-core
   - awscli
   - bettercap
+  - bettercap-caplets
   - bloodhound
   - bmon
   - cmake
@@ -105,12 +104,14 @@ misc_downloads:
     dest: /usr/share/windows-binaries/
   - url: https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh
     dest: /opt/privesc/
-  - url: https://github.com/byt3bl33d3r/CrackMapExec/releases/download/v5.4.0/cme-ubuntu-latest-3.11.zip
-    dest: /opt/crackmapexec/
-  - url: https://github.com/byt3bl33d3r/CrackMapExec/releases/download/v5.4.0/cmedb-ubuntu-latest-3.11.zip
-    dest: /opt/crackmapexec/
+  - url: https://github.com/Pennyw0rth/NetExec/releases/download/v1.1.0/nxc
+    dest: /opt/netexec/
+  - url: https://github.com/Pennyw0rth/NetExec/releases/download/v1.1.0/nxc.exe
+    dest: /usr/share/windows-binaries
   - url: https://github.com/mubix/solarflare/releases/download/latest/SolarFlare.exe
     dest: /usr/share/windows-binaries/
+  - url: https://github.com/obsidianmd/obsidian-releases/releases/download/v1.4.16/obsidian_1.4.16_amd64.deb
+    dest: /opt/obsidian/
 
 # Vars for Pip packages
 python_pip_packages:
@@ -156,6 +157,7 @@ ruby_gem_packages:
 
 ufw_application_profiles:
   - responder
+  - remote_admin
 
 # Extensions for VS Code
 vscode_extensions:
