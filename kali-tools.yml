@@ -18,8 +18,8 @@
         force: true
       loop: "{{ git_repos | flatten(levels=1) }}"
 
-    # Miscellaneous tools
-    - name: Ensure destination directory exists
+    # Download miscellaneous tools
+    - name: Ensure destination directory exists for miscellaneous tools
       ansible.builtin.file:
         path: "{{ item.dest | dirname }}"
         state: directory
@@ -28,7 +28,7 @@
         mode: 0755
       loop: "{{ misc_downloads }}"
             
-    - name: Download files
+    - name: Download miscellaneous tools
       ansible.builtin.get_url:
         url: "{{ item.url }}"
         dest: "{{ item.dest | dirname }}/{{ item.url | basename }}"
@@ -73,45 +73,14 @@
         state: link
         mode: 0755
       tags: qmodbus
-    - name: Build Bettercap
-      ansible.builtin.command: chdir=/opt/bettercap {{ item }}
-      with_items:
-        - "go install"
-        - "go build"
-      tags: bettercap
-    - name: Replace bettercap
-      ansible.builtin.copy:
-        src: "/opt/bettercap/bettercap"
-        dest: "/usr/bin/bettercap"
-        owner: root
-        group: root
-        mode: 0755
-      tags: bettercap
-    - name: Update Bettercap Modules
-      ansible.builtin.command: bettercap -eval 'caplets.update; ui.update; q'
-      tags: bettercap
-    - name: Unzip CrackMapExec (overwrite)
-      unarchive:
-        src: "{{ item }}"
-        dest: /usr/bin/
-        copy: no
-      loop:
-        - /opt/crackmapexec/cme-ubuntu-latest-3.11.zip
-        - /opt/crackmapexec/cmedb-ubuntu-latest-3.11.zip
-      tags: crackmapexec
-    - name: Set Mode for CrackMapExec
+    - name: Link nxc
       ansible.builtin.file:
-        path: "{{ item }}"
-        mode: '0755'
-      loop:
-        - /usr/bin/cme
-        - /usr/bin/cmedb
-      tags: crackmapexec
-    - name: Link CME (convenience alias)
-      ansible.builtin.file:
-        src: "/usr/bin/cme"
-        dest: "/usr/bin/crackmapexec"
+        src: "/opt/netexec/nxc"
+        dest: "/usr/local/bin/nxc"
         state: link
         mode: 0755
-        force: yes
-      tags: crackmapexec
+    - name: Install Obsidian
+      ansible.builtin.command: chdir=/opt/obsidian {{ item }}
+      with_items:
+        - "sudo apt install obsidian_1.4.16_amd64.deb"
+      tags: obsidian

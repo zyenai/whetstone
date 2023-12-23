@@ -38,8 +38,8 @@
       ansible.builtin.apt:
         autoclean: true
 
-    # Python packages
-    - name: Ensure packages for Python pip are installed
+    # Set up Python environment
+    - name: Ensure packages for pip are installed
       ansible.builtin.apt:
         name:
           - python3-dev
@@ -51,7 +51,14 @@
       retries: 1
       delay: 10
 
-    - name: Longintrepr.h dependency workaround for pycrypto
+    - name: Install pipx
+      ansible.builtin.apt:
+        name:
+          - pipx
+        state: present
+      ansible.builtin.command: pipx ensurepath
+
+    - name: Longintrepr.h dependency replacement workaround for pycrypto
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/python/cpython/main/Include/cpython/longintrepr.h
         dest: /usr/include/python3.11
