@@ -51,15 +51,6 @@
       retries: 1
       delay: 10
 
-    - name: Install pipx
-      ansible.builtin.apt:
-        name:
-          - pipx
-        state: present
-
-    - name: Run pipx ensurepath
-      ansible.builtin.command: pipx ensurepath
-
     - name: Longintrepr.h dependency replacement workaround for pycrypto
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/python/cpython/main/Include/cpython/longintrepr.h

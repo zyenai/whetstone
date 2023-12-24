@@ -142,6 +142,7 @@ python_pip_packages:
   - roadrecon
   - ropper
   - unicorn
+  - git+https://github.com/Pennyw0rth/NetExec
 
 # Vars for gem installs  
 ruby_gem_packages:

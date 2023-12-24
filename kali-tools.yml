@@ -84,8 +84,3 @@
       loop:
         - sudo apt install /opt/obsidian/obsidian_1.4.16_amd64.deb
       tags: obsidian
-
-    - name: Install NetExec
-      community.general.pipx:
-        name: NetExec
-        source: git+https://github.com/Pennyw0rth/NetExec
