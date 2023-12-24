@@ -21,7 +21,7 @@
         regexp: '^(deb\s+)http(://http.kali.org/kali.*)$'
         replace: '\1https\2'
 
-    - name: Update all packages to the latest version
+    - name: Update existing packages to the latest version
       ansible.builtin.apt:
         upgrade: safe
 
@@ -56,6 +56,8 @@
         name:
           - pipx
         state: present
+
+    - name: Run pipx ensurepath
       ansible.builtin.command: pipx ensurepath
 
     - name: Longintrepr.h dependency replacement workaround for pycrypto
