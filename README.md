@@ -41,6 +41,7 @@ Tools:
 - donut-shellcode
 - evil-winrm
 - eyewitness
+- flask-sqlalchemy
 - gdb
 - gdbserver
 - ghidra
